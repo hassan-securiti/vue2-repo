@@ -1,35 +1,56 @@
 <template>
   <v-app>
-    <v-container>
-      <v-layout row wrap>
-        <v-flex xs12 md6>
-          <h1>{{ title }}</h1>
-          <p>Price: {{ price | currency }}</p>
-        </v-flex>
-        <v-flex xs12 md6>
-          <UserCard :name.sync="userName" />
-        </v-flex>
-      </v-layout>
-      <DataList />
-      <EventChild />
-    </v-container>
+    <!-- Vuetify 1.5 navigation drawer with v-list-tile items (renamed to v-list-item in v3) -->
+    <v-navigation-drawer v-model="drawer" app clipped>
+      <v-list>
+        <v-list-tile v-for="link in links" :key="link.to" :to="link.to" active-class="primary--text">
+          <v-list-tile-action>
+            <v-icon>{{ link.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ link.label }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+
+    <!-- Vuetify 1.5 toolbar (becomes v-app-bar in v3) -->
+    <v-toolbar app clipped-left color="primary" dark>
+      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>{{ $appName }}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-chip color="white" text-color="primary">{{ headcount }} people</v-chip>
+    </v-toolbar>
+
+    <v-content>
+      <v-container fluid>
+        <router-view />
+      </v-container>
+    </v-content>
+
+    <v-footer app color="grey lighten-4">
+      <span class="grey--text">{{ $appName }} — built with Vue 2 &amp; Vuetify 1.5</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import UserCard from './components/UserCard.vue'
-import DataList from './components/DataList.vue'
-import EventChild from './components/EventChild.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
-  components: { UserCard, DataList, EventChild },
   data () {
     return {
-      title: 'Mock Migration App',
-      price: 19.99,
-      userName: 'Ada'
+      drawer: true,
+      links: [
+        { to: '/', label: 'Home', icon: 'dashboard' },
+        { to: '/team', label: 'Team', icon: 'people' },
+        { to: '/about', label: 'About', icon: 'info' }
+      ]
     }
+  },
+  computed: {
+    ...mapGetters(['headcount'])
   }
 }
 </script>
