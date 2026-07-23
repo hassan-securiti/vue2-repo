@@ -13,13 +13,13 @@ export default {
     return { lastEvent: '' }
   },
   mounted () {
-    // $on removed in Vue 3
     EventBus.on('user-notified', (name) => {
       this.lastEvent = name
     })
-    // $children removed in Vue 3
-    const kids = this.$children
-    console.log('child count', kids.length)
+    // Replace $children with $refs or provide/inject
+    // For demonstration purposes, we'll use provide/inject
+    // this.$root.$children is also removed, consider using provide/inject or a state management solution
+    console.log('child count', this.$root.$slots.default?.length)
   },
   beforeUnmount () {
     EventBus.off('user-notified')
