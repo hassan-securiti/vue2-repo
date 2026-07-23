@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     notify () {
-      EventBus.$emit('user-notified', this.name)
+      EventBus.emit('user-notified', this.name)
     }
   }
 }

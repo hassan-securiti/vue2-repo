@@ -11,9 +11,9 @@
 
     <v-list class="mt-3">
       <v-list-item v-for="u in members" :key="u.id" avatar>
-        <v-list-item-avatar color="primary">
+        <v-avatar color="primary">
           <span class="white--text">{{ initials(u.name) }}</span>
-        </v-list-item-avatar>
+        </v-avatar>
         <template>
           <v-list-item-title>{{ u.name }}</v-list-item-title>
           <v-list-item-subtitle>{{ u.role }}</v-list-item-subtitle>
