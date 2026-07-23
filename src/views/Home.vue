@@ -1,24 +1,24 @@
 <template>
   <div>
-    <v-layout row wrap>
-      <v-flex xs12 md8>
+    <v-row>
+      <v-col cols="12" md="8">
         <h1 class="display-1 mb-1">{{ title }}</h1>
-        <p class="grey--text">Total payroll: <strong>{{ payroll | currency }}</strong></p>
-      </v-flex>
-      <v-flex xs12 md4>
+        <p class="grey--text">Total payroll: <strong>{{ $filters.currency(payroll) }}</strong></p>
+      </v-col>
+      <v-col cols="12" md="4">
         <!-- .sync modifier — becomes v-model:name in Vue 3 -->
-        <UserCard :name.sync="featured" />
-      </v-flex>
-    </v-layout>
+        <UserCard v-model:name="featured" />
+      </v-col>
+    </v-row>
 
-    <v-layout row wrap class="mt-3">
-      <v-flex xs12 sm4 v-for="stat in stats" :key="stat.label">
+    <v-row class="mt-3">
+      <v-col cols="12" sm="4" v-for="stat in stats" :key="stat.label">
         <v-card class="pa-3 text-xs-center">
           <div class="headline primary--text">{{ stat.value }}</div>
           <div class="grey--text">{{ stat.label }}</div>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
 
     <div class="mt-4">
       <span class="subheading mr-2">Tags:</span>

@@ -1,11 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import axios from 'axios'
 import orderBy from 'lodash/orderBy'
 
 // Vuex 3 API — installed as a plugin. In Vue 3 this becomes createStore().
-Vue.use(Vuex)
-
 // Seed data so the app renders offline; fetchMembers() tops it up from a public API.
 const seed = [
   { id: 1, name: 'Ada Lovelace', role: 'Engineer', salary: 92000 },
@@ -13,7 +10,7 @@ const seed = [
   { id: 3, name: 'Katherine Johnson', role: 'Mathematician', salary: 81000 }
 ]
 
-export default new Vuex.Store({
+export default createStore({
   state: {
     members: seed.slice(),
     loading: false
