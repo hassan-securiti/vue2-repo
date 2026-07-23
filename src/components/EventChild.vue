@@ -14,7 +14,7 @@ export default {
   },
   mounted () {
     // $on removed in Vue 3
-    EventBus.$on('user-notified', (name) => {
+    EventBus.on('user-notified', (name) => {
       this.lastEvent = name
     })
     // $children removed in Vue 3
@@ -22,7 +22,7 @@ export default {
     console.log('child count', kids.length)
   },
   beforeUnmount () {
-    EventBus.$off('user-notified')
+    EventBus.off('user-notified')
   }
 }
 </script>
