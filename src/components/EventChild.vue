@@ -21,7 +21,7 @@ export default {
     const kids = this.$children
     console.log('child count', kids.length)
   },
-  beforeDestroy () {
+  beforeUnmount () {
     EventBus.$off('user-notified')
   }
 }

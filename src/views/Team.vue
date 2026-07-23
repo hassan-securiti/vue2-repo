@@ -1,28 +1,28 @@
 <template>
   <div>
-    <v-layout row wrap align-center class="mb-2">
-      <v-flex><h2 class="headline">Team members</h2></v-flex>
+    <v-row align="center" class="mb-2">
+      <v-col><h2 class="headline">Team members</h2></v-col>
       <v-spacer></v-spacer>
-      <v-flex shrink>
-        <v-btn flat color="primary" :loading="loading" @click="load">Refresh from API</v-btn>
-      </v-flex>
-    </v-layout>
+      <v-col shrink>
+        <v-btn variant="flat" color="primary" :loading="loading" @click="load">Refresh from API</v-btn>
+      </v-col>
+    </v-row>
 
     <DataList />
 
     <v-card class="pa-3 mt-4">
       <h3 class="subheading mb-2">Add a member</h3>
-      <v-layout row wrap>
-        <v-flex xs12 sm5 class="pr-2">
+      <v-row>
+        <v-col cols="12" sm="5" class="pr-2">
           <v-text-field v-model="form.name" label="Name"></v-text-field>
-        </v-flex>
-        <v-flex xs12 sm4 class="pr-2">
+        </v-col>
+        <v-col cols="12" sm="4" class="pr-2">
           <v-text-field v-model="form.role" label="Role"></v-text-field>
-        </v-flex>
-        <v-flex xs12 sm3>
-          <v-btn round color="primary" :disabled="!form.name" @click="add">Add</v-btn>
-        </v-flex>
-      </v-layout>
+        </v-col>
+        <v-col cols="12" sm="3">
+          <v-btn rounded color="primary" :disabled="!form.name" @click="add">Add</v-btn>
+        </v-col>
+      </v-row>
     </v-card>
 
     <EventChild class="mt-3" />

@@ -1,6 +1,6 @@
 <template>
-  <v-layout row wrap justify-center>
-    <v-flex xs12 md8>
+  <v-row justify="center">
+    <v-col cols="12" md="8">
       <v-card class="pa-4">
         <h2 class="headline mb-2">About {{ $appName }}</h2>
         <p>
@@ -9,17 +9,17 @@
           axios to fetch members, and lodash / moment for data shaping and formatting.
         </p>
         <v-divider class="my-3"></v-divider>
-        <v-list two-line>
-          <v-list-tile v-for="item in facts" :key="item.label">
-            <v-list-tile-content>
-              <v-list-tile-title>{{ item.label }}</v-list-tile-title>
-              <v-list-tile-sub-title>{{ item.value }}</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
+        <v-list lines="two">
+          <v-list-item v-for="item in facts" :key="item.label">
+            <template>
+              <v-list-item-title>{{ item.label }}</v-list-item-title>
+              <v-list-item-subtitle>{{ item.value }}</v-list-item-subtitle>
+            </template>
+          </v-list-item>
         </v-list>
       </v-card>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

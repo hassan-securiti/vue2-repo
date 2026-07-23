@@ -2,23 +2,23 @@
   <div>
     <!-- Vuetify 1.5 data table: `hide-actions` + slot="items"/slot-scope (all changed in v3) -->
     <v-data-table :headers="headers" :items="members" hide-actions class="elevation-1">
-      <template slot="items" slot-scope="props">
+      <template v-slot:items="props" >
         <td>{{ props.item.name }}</td>
         <td>{{ props.item.role }}</td>
-        <td class="text-xs-right">{{ props.item.salary | currency }}</td>
+        <td class="text-xs-right">{{ $filters.currency(props.item.salary) }}</td>
       </template>
     </v-data-table>
 
     <v-list class="mt-3">
-      <v-list-tile v-for="u in members" :key="u.id" avatar>
-        <v-list-tile-avatar color="primary">
+      <v-list-item v-for="u in members" :key="u.id" avatar>
+        <v-list-item-avatar color="primary">
           <span class="white--text">{{ initials(u.name) }}</span>
-        </v-list-tile-avatar>
-        <v-list-tile-content>
-          <v-list-tile-title>{{ u.name }}</v-list-tile-title>
-          <v-list-tile-sub-title>{{ u.role }}</v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-avatar>
+        <template>
+          <v-list-item-title>{{ u.name }}</v-list-item-title>
+          <v-list-item-subtitle>{{ u.role }}</v-list-item-subtitle>
+        </template>
+      </v-list-item>
     </v-list>
   </div>
 </template>

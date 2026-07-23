@@ -1,15 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory, createMemoryHistory } from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Team from '../views/Team.vue'
 import About from '../views/About.vue'
 
 // vue-router 3 API — installed as a plugin. In Vue 3 this becomes createRouter().
-Vue.use(Router)
-
-export default new Router({
-  mode: 'history',
+export default createRouter({
+  history: createWebHistory(),
   routes: [
     { path: '/', name: 'home', component: Home },
     { path: '/team', name: 'team', component: Team },
